@@ -15,7 +15,6 @@ document
 		};
 
 		try {
-			console.log(JSON.stringify(usuario));
 			const response = await fetch("http://localhost:3005/register", {
 				method: "POST",
 				headers: {
@@ -25,8 +24,7 @@ document
 			});
 
 			if (response.ok) {
-				const result = await response.json();
-				alert("Usuario guardado con éxito: " + result.message);
+				alert("Usuario guardado con éxito: ");
 			} else {
 				alert("Error al guardar usuario");
 			}
