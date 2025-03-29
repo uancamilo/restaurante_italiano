@@ -1,33 +1,33 @@
 document
-	.getElementById("formRegistro")
+	.getElementById("formLogin")
 	.addEventListener("submit", async function (event) {
 		event.preventDefault();
+		const form = event.target;
+
 		const user = document.getElementById("user").value;
-		const name = document.getElementById("name").value;
-		const rol = document.getElementById("rol").value;
 		const password = document.getElementById("password").value;
 
-		const usuario = {
+		const credentials = {
 			user: user,
-			name: name,
-			rol: rol,
 			password: password,
 		};
 
 		try {
-			const response = await fetch("http://localhost:3005/register", {
+			const response = await fetch("http://localhost:3005/login", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(usuario),
+				body: JSON.stringify(credentials),
 			});
 
+			const data = await response.json();
+
 			if (response.ok) {
-				alert("Usuario guardado con éxito: ");
+				alert("Inicio de sesión exitoso");
 				form.reset();
 			} else {
-				alert("Error al guardar usuario");
+				alert(data.message || "Error en el inicio de sesión");
 			}
 		} catch (error) {
 			console.error("Error en la solicitud:", error);
