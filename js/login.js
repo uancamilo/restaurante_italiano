@@ -22,9 +22,17 @@ document
 			});
 
 			const data = await response.json();
+			console.log(data);
 
 			if (response.ok) {
 				alert("Inicio de sesión exitoso");
+				if (data.rol === "mesero") {
+					window.location.href = "mesero.html";
+				} else if (data.rol === "chef") {
+					window.location.href = "chef.html";
+				} else if (data.rol === "cajero") {
+					window.location.href = "cajero.html";
+				} 
 				form.reset();
 			} else {
 				alert(data.message || "Error en el inicio de sesión");
